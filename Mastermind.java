@@ -18,9 +18,8 @@ public class Mastermind {
 	}
 	System.out.println("------");
 
-	int rnum = (int) (Math.random()*nc);
-	int[] guess_row = matrix[rnum];
-	for (int c : guess_row) {
+	int[] random_row = cobj.draw_row();
+	for (int c : random_row) {
 	    System.out.print(c + " ");
 	}
 	System.out.println();
@@ -31,6 +30,9 @@ public class Mastermind {
 class Combinations {
     
     int n, k;
+    int number_of_rows;
+    int[][] matrix;
+    int[] random_row;
     
     public Combinations(int n, int k) { // Class constructor
 	this.n = n;
@@ -39,10 +41,10 @@ class Combinations {
     
     public int[][] create_matrix() {
 	
-	int number_of_rows = (int) Math.pow(k, n);
+	this.number_of_rows = (int) Math.pow(k, n);
 	
 	// Declare a 2D array of integers
-	int[][] matrix = new int[number_of_rows][n];
+	int[][] matrix = new int[this.number_of_rows][n];
 	
 	int i = 0;  // First row is a vector with zeros
 	for (int j=0; j < n; j++) {
@@ -66,9 +68,17 @@ class Combinations {
 	    }
 	    
 	}
+
+	this.matrix = matrix;
+	return this.matrix;
 	
-	return matrix;
-	
+    }
+
+    public int[] draw_row() {
+	int random_number = (int) (Math.random()*this.number_of_rows);
+
+	this.random_row = matrix[random_number];
+	return this.random_row;
     }
     
 }
