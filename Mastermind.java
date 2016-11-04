@@ -22,6 +22,10 @@ public class Mastermind {
 	    System.out.print(c + " ");
 	}
 	System.out.println();
+
+	Combinations comb = new Combinations();
+	//comb.create_matrix();
+	System.out.println(comb.create_matrix());
 	
     }
 
@@ -58,4 +62,18 @@ public class Mastermind {
 	return matrix;
     }
     
+}
+
+class Combinations {
+
+    public String create_matrix() {
+
+	//System.out.println("This creates a matrix");
+
+	String str = "This creates a matrix";
+
+	return str;
+	
+    }
+
 }
