@@ -1,13 +1,15 @@
 public class Mastermind {
     public static void main(String[] args) {
-	// Prints "Hello, World" in the terminal window.
+
 	System.out.println("Welcome to Mastermind!");
 	
 	int n = 5;  // Number of positions
 	int k = 5;  // Number of colors
 	int nc = (int) Math.pow(k, n); // Number of combinations
 	
-	int[][] matrix = create_matrix(n, k);
+	Combinations cobj = new Combinations(n, k);
+	int[][] matrix = cobj.create_matrix();
+
 	for (int[] rowvec : matrix) {
 	    for (int elem : rowvec) {
 		System.out.print(elem + " ");
@@ -22,31 +24,37 @@ public class Mastermind {
 	    System.out.print(c + " ");
 	}
 	System.out.println();
-
-	Combinations comb = new Combinations();
-	//comb.create_matrix();
-	System.out.println(comb.create_matrix());
-	
     }
+}
 
-    public static int[][] create_matrix(int n, int k) {
 
-	int nrows = (int) Math.pow(k, n); //Number of rows
-
+class Combinations {
+    
+    int n, k;
+    
+    public Combinations(int n, int k) { // Class constructor
+	this.n = n;
+	this.k = k;
+    }
+    
+    public int[][] create_matrix() {
+	
+	int number_of_rows = (int) Math.pow(k, n);
+	
 	// Declare a 2D array of integers
-	int[][] matrix = new int[nrows][n];
+	int[][] matrix = new int[number_of_rows][n];
 	
 	int i = 0;  // First row is a vector with zeros
 	for (int j=0; j < n; j++) {
 	    matrix[i][j] = 0;
 	}
 	
-	for (i=1; i < nrows; i++) {
+	for (i=1; i < number_of_rows; i++) {
 	    
 	    for (int j=0; j < n; j++) {
 		matrix[i][j] = matrix[i-1][j];  // copy previous combination
 	    }
-	  
+	    
 	    for (int j=0; j < n; j++) {    
 		if (matrix[i][j] < k-1) {
 		    matrix[i][j]++;
@@ -60,20 +68,7 @@ public class Mastermind {
 	}
 	
 	return matrix;
-    }
-    
-}
-
-class Combinations {
-
-    public String create_matrix() {
-
-	//System.out.println("This creates a matrix");
-
-	String str = "This creates a matrix";
-
-	return str;
 	
     }
-
+    
 }
