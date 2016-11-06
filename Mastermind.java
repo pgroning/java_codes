@@ -28,11 +28,11 @@ public class Mastermind {
 	//for (boolean r : boolvec) {
 	//    System.out.println(r);
 	//}
-	int[] matchvec = cobj.get_matchvec(0);
+	int[] matchvec = cobj.get_matchvec(matrix.length-1);
 	for (int e : matchvec) {
 	    System.out.println(e);
 	}
-	
+
     }
 }
 
@@ -101,16 +101,30 @@ class Combinations {
     }
 
     public int[] get_matchvec(int row) {
-	int[] rvec = this.random_row;
-	int[] combvec = this.matrix[row];
-
-	int j = 0;
+	int[] guess_vec = this.random_row;
+	//int[] combvec = this.matrix[row];
+	int[] combvec = {0,1,1,1,1};
+	int k = 0;
 	for (int i = 0; i < this.n; i++) {
-	    if (combvec[i] == rvec[i]) {
-		this.matchvec[j] = 2;
-		j++;
+	    if (combvec[i] == guess_vec[i]) {
+		combvec[i] = -1;
+		guess_vec[i] = -2;
+		this.matchvec[k] = 2;
+		k++;
 	    }
 	}
+
+	for (int i = 0; i < this.n; i++) {
+	    for (int j = 0; j < this.n; j++) {
+		if (combvec[i] == guess_vec[j] && i != j) {
+		    combvec[i] = -1;
+		    guess_vec[j] = -2;
+		    this.matchvec[k] = 1;
+		    k++;
+		}
+	    }
+	}
+	
 	return this.matchvec;
     }
     
