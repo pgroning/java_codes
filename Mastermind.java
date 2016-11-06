@@ -23,6 +23,12 @@ public class Mastermind {
 	    System.out.print(c + " ");
 	}
 	System.out.println();
+
+	boolean[] boolvec = cobj.create_boolvec();
+	//for (boolean r : boolvec) {
+	//    System.out.println(r);
+	//}
+	
     }
 }
 
@@ -32,7 +38,8 @@ class Combinations {
     int n, k;
     int number_of_rows;
     int[][] matrix;
-    int[] random_row;
+    int[] random_row, matchvec;
+    boolean[] boolvec;
     
     public Combinations(int n, int k) { // Class constructor
 	this.n = n;
@@ -74,11 +81,26 @@ class Combinations {
 	
     }
 
+    public boolean[] create_boolvec() {
+	// Declare a 1D array of booleans
+	boolean[] boolvec = new boolean[this.number_of_rows];
+	for (int i = 0; i < this.number_of_rows; i++) {
+	    boolvec[i] = true;
+	}
+	this.boolvec = boolvec;
+	return boolvec;
+    }
+    
     public int[] draw_row() {
 	int random_number = (int) (Math.random()*this.number_of_rows);
-
 	this.random_row = matrix[random_number];
 	return this.random_row;
+    }
+
+    public int[] create_matchvec() {
+	int[] matchvec = new int[this.n];
+	this.matchvec = matchvec;
+	return matchvec;
     }
     
 }
