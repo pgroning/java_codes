@@ -101,9 +101,10 @@ class Combinations {
     }
 
     public int[] get_matchvec(int row) {
-	int[] guess_vec = this.random_row;
+	//int[] guess_vec = this.random_row;
+        int[] guess_vec = {0,1,1,4,3};
 	//int[] combvec = this.matrix[row];
-	int[] combvec = {0,1,1,1,1};
+	int[] combvec = {0,3,3,3,3};
 	int k = 0;
 	for (int i = 0; i < this.n; i++) {
 	    if (combvec[i] == guess_vec[i]) {
@@ -113,7 +114,7 @@ class Combinations {
 		k++;
 	    }
 	}
-
+        
 	for (int i = 0; i < this.n; i++) {
 	    for (int j = 0; j < this.n; j++) {
 		if (combvec[i] == guess_vec[j] && i != j) {
@@ -121,6 +122,7 @@ class Combinations {
 		    guess_vec[j] = -2;
 		    this.matchvec[k] = 1;
 		    k++;
+                    break;
 		}
 	    }
 	}
