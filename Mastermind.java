@@ -1,3 +1,5 @@
+import java.util.Scanner; // Used for getting user input
+
 public class Mastermind {
     public static void main(String[] args) {
 
@@ -28,11 +30,13 @@ public class Mastermind {
 	//for (boolean r : boolvec) {
 	//    System.out.println(r);
 	//}
-	int[] matchvec = cobj.get_matchvec(matrix.length-1);
+	int[] matchvec = cobj.matchvec(matrix.length-1);
 	for (int e : matchvec) {
 	    System.out.println(e);
 	}
 
+	cobj.get_user_matchvec();
+	
     }
 }
 
@@ -100,7 +104,16 @@ class Combinations {
 	return this.random_row;
     }
 
-    public int[] get_matchvec(int row) {
+    public void get_user_matchvec() {
+	// get user input from console
+	Scanner scanner = new Scanner(System.in);
+	String line = scanner.nextLine();
+	//scanner.close();
+	System.out.println("You entered: " + line);
+	
+    }
+    
+    public int[] matchvec(int row) {
 	int[] guess_vec = this.random_row;
         //int[] guess_vec = {0,1,1,4,3};
 	int[] combvec = this.matrix[row];
